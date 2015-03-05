@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>ActiveX</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+<body onload="init()" id="ocx" style="background: repeat-x rgb(55, 55, 55);overflow:hidden;margin-top: 0px; margin-left: 0px;">
+
+
+<object classid="clsid:77E92666-92A3-4EFF-A04F-8F194E00E050" 
+codebase="AXMediaView.cab#version=2,0,0,1"
+			id="AXMediaView"
+			style="overflow:hidden; width: 880px; height: 714px"
+			>
+			<PARAM name="LoadINI" value="TRUE">
+			<PARAM name="Audio" value="TRUE">
+</object>
+</body>
+</html>
+
+<script language="JavaScript">
+function init()
+{	
+	/*
+	 * 1.Username:
+	 * 2.Password:
+	 */
+	AXMediaView.Login("admin","admin");
+	
+	/*
+	 * 1.IP:
+	 * 2.WebPort:
+	 * 3.DeviceID: 	extension variable ,default value is 2.
+	 */
+	AXMediaView.setServerInfo( "192.168.3.29", 554, 2);
+	
+	/*
+	 * MediaURL: 'h264', 'mjpeg', '3gpp'
+	 */
+	AXMediaView.setMediaURL("stream.sdp1");
+	
+	/*
+	 * Protocal Type:	0:TCP
+	 * 					1:UDP
+	 * 					2:MULTICAST
+	 * 					3:OVER HTTP
+	 */
+	AXMediaView.setRTPType( 0 );
+	AXMediaView.play();
+	AXMediaView.setEnableClickPTZ( 1 );
+}
+</script>
